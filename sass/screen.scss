@@ -18,7 +18,7 @@ body {
 .hero {
     max-width: 100em;
     margin: 0 auto;
-    background: url('../images/TessTao.jpg');
+    background: url('../images/sunset-resized.jpg');
     background-size: cover;
     color: $highlight-text-color;
     header {
@@ -67,5 +67,33 @@ body {
             border-radius: 0 2px 2px 0;
             background-color: $button-color;
         }
+    }
+}
+.numbers {
+    width: 80%;
+    margin: 0 auto;
+    ul {
+        position: relative;
+        top: -1em;
+        background: $bg-color;
+        li {
+            float: left;
+            width: 25%;
+            box-sizing: border-box;
+            border-top: 1px solid $secondy-text-color;
+            border-bottom: 1px solid $secondy-text-color;
+            border-left: 1px solid $secondy-text-color;
+            &:last-child {
+            	border-right: 1px solid $secondy-text-color;
+            }
+            h2 {
+            	font-size: 2em;
+            	padding: 1em 0;
+            }
+            h3 {
+            	padding: 0 0 2em 0;
+            }
+        }
+        @include clearfix;
     }
 }
