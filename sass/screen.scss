@@ -5,150 +5,267 @@
 
 @import "compass";
 @import "compass/reset";
-$body-color: #efefef;
-$post-bg-color: #efefef;
-// $post-bg-color: hsl(200, 50%, 50%);
-$gray-text-color: gray;
-$highlight-text-color: white;
-$text-color: #000000;
-$twitter-color: #0099CC;
-$break-small: 320px;
-$break-large: 1024px;
-@mixin respond-to($media) {
-    @if $media == handhelds {
-        @media only screen and (max-width: $break-small) {
-            @content;
-        }
-    }
-    @else if $media == medium-screens {
-        @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) {
-            @content;
-        }
-    }
-    @else if $media == wide-screens {
-        @media only screen and (min-width: $break-large) {
-            @content;
-        }
+$background-color: #eeeeee;
+$text-color: #3e3e3e;
+$light-text-color: #eeeeee;
+$heading-color: hsl(160, 90%, 40%);
+$mask-color: #333333;
+@mixin section-title() {
+    font-size: 2em;
+    text-transform: uppercase;
+    color: $heading-color;
+    padding: 2em 0;
+    &:after {
+        content: "";
+        display: block;
+        background-color: #cccccc;
+        width: 2em;
+        height: .2em;
+        margin: .4em auto;
     }
 }
 body {
-    font-family: 'Open Sans', sans-serif;
-    // font-size: 62.5%;
+    font-size: 62.5%;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
-    width: 800px;
-    margin: 0 auto;
+    color: $text-color;
+    background-color: $background-color;
+    width: 100%;
 }
 header {
-    nav {
-    
-        ul {
-            float: right;
-            li {
-                float: left;
-                margin: 1em .5em;
-                padding: .5em 1em;
-                border: 1px solid transparent;
-                border-radius: 2px;
-                &:last-child {
-                    border: 1px solid $highlight-text-color;
-                }
-            }
-        }
-    }    
-}
-
-.numbers {
-    width: 60em;
-    margin: 2em auto;
-    background: $post-bg-color;
+    padding: 0 1em;
+    background-color: $heading-color;
     li {
         float: left;
-        width: 25%;
-        // 平板用
-        @include respond-to(medium-screens) {
-            width: 50%;
-        }
-        // 手機用
-        @include respond-to(handhelds) {
-            float: none;
-            width: 100%;
-        }
-        box-sizing: border-box;
-        padding: 1.5em 3em;
-        border-bottom: 3px solid transparent;
-        transition: all .3s ease-in;
-        h4 {
-            text-transform: uppercase;
-            color: $gray-text-color;
-        }
-        p {
-            margin-top: 1em;
-            font-weight: bold;
+        a {
+            font-size: 1.5em;
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            padding: 1em 1em;
         }
         &:hover {
-            border-bottom: 3px solid $twitter-color;
+            background-color: hsl(160, 90%, 35%);
         }
     }
     @include clearfix;
 }
-.content {
-    margin-left: 4em;
-    span {
-        margin-right: 1em;
-        &.name {
+
+.hero {
+    width: 100%;
+    min-height: 50em;
+    position: relative;
+    background-color: $mask-color;
+    z-index: 1;
+
+    li {
+        float: left;
+        width: 33.33%;
+        box-sizing: border-box;
+        position: relative;
+        height: 22em;
+        overflow: hidden;
+        .case {
+            width: 100%;
+        }
+        &:hover {
+            .mask {
+                top: 0;
+            }
+        }
+        .mask {
+            display: block;
+            position: absolute;
+            top: -22em;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: $text-color;
+            opacity: .1;
+        }
+    }
+    &:after {
+        background: url('../images/hero.png');
+        background-size: cover;
+        position: absolute;
+        content: '';
+        z-index: -1;
+        opacity: .2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    h2 {
+        font-size: 6em;
+        font-weight: bold;
+        padding: 3em 0 1em 0;
+        text-transform: uppercase;
+        color: white;
+    }
+    p {
+        color: #cecece;
+        font-size: 1.5em;
+        font-weight: lighter;
+        line-height: 1.4;
+        max-width: 70%;
+        padding: 1em 0 8em;
+        margin: 0 auto;
+        span {
+            color: $heading-color;
+        }
+    }
+}
+.information {
+    position: absolute;
+    background-color: $text-color;
+    top: 22em;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .9;
+    transition: all .4s ease-in-out;
+    text-align: left;
+    padding: 0 1em;
+    box-sizing: border-box;
+    color: white;
+    h3 {
+        font-size: 2em;
+        padding: 1em 0;
+    }
+    .detail {
+        position: relative;
+        padding-top: 2em;
+        .avator {
+            position: absolute;
+            width: 3em;
+            height: 3em;
+            bottom: 0;
+            @include border-radius(100%);
+        }
+        p {
+            padding: .5em 0 0 0;
+            font-size: 1.5em;
+        }
+        .contact {
+            margin-left: 4em;
+            .name {
+                font-weight: bold;
+                margin-right: .5em;
+            }
+            .role {
+                color: $light-text-color;
+            }
+        }
+        .like {
+            position: absolute;
+            font-size: 2em;
+            bottom: 0;
+            right: 0;
+            color: white;
+            background-color: $heading-color;
+            border: 1px solid $heading-color;
+            padding: .2em;
+            @include border-radius(100%);
+            transition: all .3s ease-in-out;
+            &:hover {
+                color: $heading-color;
+                background-color: white;
+                border: 1px solid transparent;
+            }
+        }
+    }
+    @include clearfix;
+}
+.topics {
+    padding: 2em 0 4em;
+    h3 {
+        @include section-title;
+    }
+    li {
+        float: left;
+        width: 33.33%;
+        i {
+            font-size: 3em;
+        }
+        h4 {
+            font-size: 1.5em;
+            padding: 1em 0;
             font-weight: bold;
         }
-        &.account {
-            font-weight: lighter;
-            color: $gray-text-color;
-        }
-        &.time {
-            color: $gray-text-color;
-            float: right;
-            margin-right: 0;
-        }
-    }
-    .post {
-    position: relative;
-    text-align: left;
-    padding: 2em;
-    background: $post-bg-color;
-    border-bottom: 1px solid $body-color;
-    header {
-        margin-bottom: 1em;
-    }
-    section {
-        margin-bottom: 1em;
         p {
-            line-height: 1.4em;
-            font-weight: normal;
+            line-height: 1.4;
+            color: #6e6e6e;
+            padding: 0 8em;
+            margin-bottom: 4em;
         }
-        img {
+    }
+    @include clearfix;
+}
+.sample {
+    li {
+        float: left;
+        width: 50%;
+        margin-bottom: 2em;
+        .thumb {
             width: 100%;
-            margin-bottom: 1em;
-        }
-    }
-    footer {
-        a {
-            text-decoration: none;
-            color: $gray-text-color;
-            margin-right: 1em;
-            &:last-child {
-                float: right;
-                margin-right: 0;
-            }
-            &:hover {
-                color: $text-color;
+            height: 30em;
+            overflow: hidden;
+            img {
+                width: 90%;
+                margin: 0 auto;
             }
         }
+        .description {
+            h4 {
+                text-align: left;
+                padding-left: 1.5em;
+                font-size: 2em;
+                font-weight: bold;
+            }
+            p {
+                font-size: 1.5em;
+                font-weight: lighter;
+                color: #6e6e6e;
+                line-height: 1.4;
+                text-align: left;
+                padding: .5em 2em;
+            }
+        }
     }
+    @include clearfix;
 }
-}
-.avator {
-    width: 3em;
-    height: 3em;
-    @include border-radius(100%);
-    position: absolute;
-    top: 2em;
-    left: 2em;
-}
+
+// .sample #week-2 {
+//     li {
+//         float: left;
+//         width: 50%;
+//         .description {
+//             h4 {
+//                 text-align: left;
+//                 padding-left: 1.5em;
+//                 font-size: 2em;
+//                 font-weight: bold;
+//             }
+//             p {
+//                 font-size: 1.5em;
+//                 font-weight: lighter;
+//                 color: #6e6e6e;
+//                 line-height: 1.4;
+//                 text-align: left;
+//                 padding: .5em 2em;
+//             }
+//         }
+//         .thumb {
+//             width: 100%;
+//             height: 30em;
+//             overflow: hidden;
+//             img {
+//                 width: 90%;
+//                 margin: 0 auto;
+//             }
+//         }
+        
+//     }
+//     @include clearfix;
+// }
